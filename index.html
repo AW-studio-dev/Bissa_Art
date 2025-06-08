@@ -759,6 +759,136 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 576px) {
+      /* Header */
+      .header .container {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      
+      .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--dark);
+        cursor: pointer;
+        order: 1;
+      }
+      
+      .logo {
+        order: 0;
+      }
+      
+      .btn {
+        order: 2;
+        margin-left: auto;
+      }
+      
+      .navbar {
+        order: 3;
+        width: 100%;
+        margin-top: 15px;
+        display: none;
+      }
+      
+      .navbar.active {
+        display: block;
+      }
+      
+      .navbar-list {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+      
+      /* Hero Section */
+      .hero {
+        padding-top: 150px;
+        padding-bottom: 60px;
+      }
+      
+      .headline-lg {
+        font-size: 2.2rem;
+      }
+      
+      .hero-text {
+        font-size: 1rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+      }
+      
+      .hero-features {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      /* General Sections */
+      .section {
+        padding: 60px 0;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+      }
+      
+      .title-lg {
+        font-size: 1.8rem;
+      }
+      
+      .body-md {
+        font-size: 1rem;
+      }
+      
+      /* Cards */
+      .features-grid,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
+      
+      /* Footer */
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-col {
+        text-align: center;
+      }
+      
+      .footer-col h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      /* Forms */
+      .testimonial-form {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-group.full-width,
+      .submit-btn {
+        grid-column: 1;
+      }
+      
+      /* Adjustments for small elements */
+      .feature-item {
+        padding: 8px 15px;
+      }
+      
+      .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 
@@ -770,6 +900,12 @@
       <a href="index.html" class="logo">
         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTEgMjgiPgogIDx0ZXh0IHg9IjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM0QTZDRjciPkJpc3NhIEFydDwvdGV4dD4KPC9zdmc+" alt="Bissa Art" class="logo">
       </a>
+
+      <button class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <a href="index(3).html" class="btn btn-primary">Devis </a>
 
       <nav class="navbar">
         <ul class="navbar-list">
@@ -787,8 +923,6 @@
           </li>
         </ul>
       </nav>
-
-      <a href="index(3).html" class="btn btn-primary">Devis </a>
     </div>
   </header>
 
@@ -832,9 +966,7 @@
         </div>
       </section>
 
-      <!-- Pourquoi nous choisir
-                   <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=800" alt="Design graphique créatif">
- -->
+      <!-- Pourquoi nous choisir -->
       <section class="section why-us">
         <div class="container">
           <h2 class="section-title text-center">Pourquoi choisir Bissa Art ?</h2>
@@ -1011,8 +1143,6 @@
               <i class="fab fa-instagram"></i>
             </a>
           </li>
-          
-        
         </ul>
 
         <p class="text-center">&copy; 2025 Bissa Art. Tous droits réservés.</p>
@@ -1021,9 +1151,35 @@
   </footer>
 
   <script>
+    // Mobile Menu Toggle
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.querySelector('.navbar').classList.toggle('active');
+    });
+
+    // Handle window resize
+    function handleResize() {
+      if (window.innerWidth > 576) {
+        document.querySelector('.navbar').style.display = 'block';
+      } else {
+        document.querySelector('.navbar').style.display = 'none';
+      }
+    }
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Run on load
+
+    // Header scroll effect
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
     // Animation au défilement
     document.addEventListener('DOMContentLoaded', function() {
-      // Animation des éléments au scroll
       const animateOnScroll = function() {
         const elements = document.querySelectorAll('.feature-card, .process-step, .testimonial-card, .guarantee-list li');
         
@@ -1043,7 +1199,6 @@
       const steps = document.querySelectorAll('.process-step');
       const testimonials = document.querySelectorAll('.testimonial-card');
       const guaranteeItems = document.querySelectorAll('.guarantee-list li');
-      
       features.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
