@@ -153,10 +153,16 @@
       height: 40px;
     }
     
+    .navbar {
+      display: flex;
+      align-items: center;
+    }
+    
     .navbar-list {
       display: flex;
       list-style: none;
       gap: 35px;
+      margin-right: 20px;
     }
     
     .navbar-link {
@@ -183,6 +189,43 @@
       width: 100%;
     }
     
+    /* Menu Hamburger */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1001;
+      position: relative;
+    }
+    
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: var(--dark);
+      border-radius: 3px;
+      transition: var(--transition);
+      transform-origin: center;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+    
     /* Portfolio Section */
     .portfolio {
       padding-top: 180px;
@@ -202,6 +245,13 @@
       box-shadow: var(--shadow);
       transition: var(--transition);
       position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .portfolio-card.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .portfolio-card:hover {
@@ -380,6 +430,70 @@
       transform: translateY(-5px);
     }
     
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 400px;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      z-index: 1000;
+      transition: var(--transition);
+      padding: 100px 30px 30px;
+      overflow-y: auto;
+    }
+    
+    .mobile-menu.active {
+      right: 0;
+    }
+    
+    .mobile-menu-list {
+      list-style: none;
+    }
+    
+    .mobile-menu-list li {
+      margin-bottom: 20px;
+    }
+    
+    .mobile-menu-list a {
+      color: var(--dark);
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition);
+      display: block;
+      padding: 10px 0;
+    }
+    
+    .mobile-menu-list a:hover {
+      color: var(--primary);
+    }
+    
+    .mobile-menu-list .active {
+      color: var(--primary);
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+    
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
     /* Responsive */
     @media (max-width: 992px) {
       .section {
@@ -393,20 +507,66 @@
       .portfolio-grid {
         grid-template-columns: 1fr 1fr;
       }
+      
+      .btn-desktop {
+        display: none;
+      }
     }
     
     @media (max-width: 768px) {
+      .section {
+        padding: 60px 0;
+      }
+      
+      .portfolio {
+        padding-top: 120px;
+      }
+      
       .section-title {
         font-size: 1.8rem;
+        margin-bottom: 40px;
       }
       
       .portfolio-grid {
         grid-template-columns: 1fr;
       }
       
-      .header .navbar-list {
+      .navbar-list {
         display: none;
       }
+      
+      .menu-toggle {
+        display: flex;
+      }
+      
+      .mobile-menu .btn {
+        margin-top: 20px;
+        width: 100%;
+        text-align: center;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .section {
+        padding: 50px 0;
+      }
+      
+      .title-lg {
+        font-size: 2.2rem;
+      }
+      
+      .cta-text {
+        font-size: 1.1rem;
+      }
+      
+      .btn {
+        padding: 12px 25px;
+      }
+    }
+    
+    /* No Scroll when menu is open */
+    body.no-scroll {
+      overflow: hidden;
     }
   </style>
 </head>
@@ -435,11 +595,40 @@
             <a href="index(3).html" class="navbar-link">Contact</a>
           </li>
         </ul>
-      </nav>
 
-      <a href="index(3).html" class="btn btn-primary">Devis </a>
+        <a href="index(3).html" class="btn btn-primary btn-desktop">Devis</a>
+        
+        <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
     </div>
   </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <ul class="mobile-menu-list">
+      <li>
+        <a href="index.html">Accueil</a>
+      </li>
+      <li>
+        <a href="index(1).html">Services</a>
+      </li>
+      <li>
+        <a href="index(2).html" class="active">Portfolio</a>
+      </li>
+      <li>
+        <a href="index(3).html">Contact</a>
+      </li>
+      <li>
+        <a href="index(3).html" class="btn btn-primary">Devis</a>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="overlay"></div>
 
   <main>
     <article>
@@ -645,34 +834,40 @@
   </footer>
 
   <script>
-    // Animation au défilement
     document.addEventListener('DOMContentLoaded', function() {
-      // Animation des éléments au scroll
-      const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.portfolio-card');
-        
-        elements.forEach(element => {
-          const elementPosition = element.getBoundingClientRect().top;
-          const screenPosition = window.innerHeight / 1.3;
-          
-          if(elementPosition < screenPosition) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-          }
-        });
-      };
+      // Elements
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      const overlay = document.querySelector('.overlay');
+      const body = document.body;
       
-      // Initial state
-      const portfolioItems = document.querySelectorAll('.portfolio-card');
-      
-      portfolioItems.forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(20px)';
-        item.style.transition = all 0.5s ease ${index * 0.1}s;
+      // Toggle mobile menu
+      menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
+        body.classList.toggle('no-scroll');
       });
       
-      window.addEventListener('scroll', animateOnScroll);
-      animateOnScroll(); // Trigger once on load
+      // Close menu when clicking on overlay
+      overlay.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        this.classList.remove('active');
+        body.classList.remove('no-scroll');
+      });
+      
+      // Close menu when clicking on a link
+      const menuLinks = document.querySelectorAll('.mobile-menu-list a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          menuToggle.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          overlay.classList.remove('active');
+          body.classList.remove('no-scroll');
+        });
+      });
       
       // Header scroll effect
       const header = document.querySelector('.header');
@@ -683,6 +878,27 @@
           header.classList.remove('scrolled');
         }
       });
+      
+      // Animate portfolio items on scroll
+      const animateOnScroll = function() {
+        const elements = document.querySelectorAll('.portfolio-card');
+        const windowHeight = window.innerHeight;
+        
+        elements.forEach((element, index) => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const offset = 100;
+          
+          if (elementPosition < windowHeight - offset) {
+            setTimeout(() => {
+              element.classList.add('visible');
+            }, index * 100);
+          }
+        });
+      };
+      
+      // Initial animation
+      animateOnScroll();
+      window.addEventListener('scroll', animateOnScroll);
     });
   </script>
 </body>
