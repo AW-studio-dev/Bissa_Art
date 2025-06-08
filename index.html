@@ -759,6 +759,102 @@
         grid-template-columns: 1fr;
       }
     }
+    @media (max-width: 576px) {
+  /* تعديلات الهيدر */
+  .header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .navbar {
+    width: 100%;
+  }
+  
+  .navbar-list {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    display: none;
+  }
+  
+  .navbar.active .navbar-list {
+    display: flex;
+  }
+  
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--dark);
+    cursor: pointer;
+  }
+  
+  /* تعديلات قسم البطل */
+  .hero {
+    padding-top: 150px;
+    padding-bottom: 60px;
+  }
+  
+  .headline-lg {
+    font-size: 2.2rem;
+  }
+  
+  .hero-text {
+    font-size: 1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+  }
+  
+  .hero-features {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* تعديلات عامة */
+  .section {
+    padding: 60px 0;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
+  
+  .title-lg {
+    font-size: 1.8rem;
+  }
+  
+  .body-md {
+    font-size: 1rem;
+  }
+  
+  /* تعديلات البطاقات */
+  .features-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .process-steps {
+    grid-template-columns: 1fr;
+  }
+  
+  /* تعديلات الفوتر */
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-col {
+    text-align: center;
+  }
+  
+  .footer-col h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
   </style>
 </head>
 
@@ -1021,6 +1117,30 @@
   </footer>
 
   <script>
+    // قائمة الهاتف المنسدلة
+const menuToggle = document.createElement('button');
+menuToggle.className = 'menu-toggle';
+menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+menuToggle.addEventListener('click', () => {
+  document.querySelector('.navbar').classList.toggle('active');
+});
+
+document.querySelector('.header .container').insertBefore(menuToggle, document.querySelector('.navbar'));
+menuToggle.style.display = 'none';
+
+// إخفاء زر القائمة على الشاشات الكبيرة
+function handleResize() {
+  if (window.innerWidth <= 576px) {
+    menuToggle.style.display = 'block';
+    document.querySelector('.navbar-list').style.display = 'none';
+  } else {
+    menuToggle.style.display = 'none';
+    document.querySelector('.navbar-list').style.display = 'flex';
+  }
+}
+
+window.addEventListener('resize', handleResize);
+handleResize(); // تشغيل عند التحميل
     // Animation au défilement
     document.addEventListener('DOMContentLoaded', function() {
       // Animation des éléments au scroll
