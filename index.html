@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="autor" content="aw.studio.dz">
+
+  <title>Bissa art - Design Graphique Professionnel</title>
+  <meta name="description" content="Design graphique sur mesure en Algérie - Créations uniques, service 24/7, tarifs compétitifs et satisfaction client garantie">
+
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* CSS Global */
+    :root {
+      --primary: #4a6cf7;
+      --primary-dark: #3a56d1;
+      --dark: #1e1e2c;
+      --light: #f9f9ff;
+      --gray: #6a6a78;
+      --transition: all 0.3s ease;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --radius: 15px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Jost', sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      background-color: #fff;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .section {
+      padding: 100px 0;
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 60px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    
+    .title-lg {
+      font-size: 2.8rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    
+    .body-md {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 30px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+    
+    .btn-tertiary {
+      background: white;
+      color: var(--primary);
+    }
+    
+    .btn-tertiary:hover {
+      background: var(--dark);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+    
+    .grid {
+      display: grid;
+      gap: 30px;
+    }
+    
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 20px 0;
+      transition: var(--transition);
+    }
+    
+    .header.scrolled {
+      padding: 15px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+    
+    .header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo img {
+      height: 40px;
+    }
+    
+    .navbar-list {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+    }
+    
+    .navbar-link {
+      color: var(--dark);
+      font-weight: 500;
+      position: relative;
+      padding: 5px 0;
+    }
+    
+    .navbar-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .navbar-link:hover::after,
+    .navbar-link.active::after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding-top: 180px;
+      padding-bottom: 100px;
+      background: linear-gradient(135deg, #f9f9ff 0%, #eef1ff 100%);
+    }
+    
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    
+    .hero-content {
+      max-width: 600px;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .headline-lg {
+      font-size: 3.5rem;
+      line-height: 1.2;
+      margin-bottom: 25px;
+    }
+    
+    .hero-text {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .hero-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      box-shadow: var(--shadow);
+    }
+    
+    .hero-banner {
+      position: relative;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(74, 108, 247, 0.2);
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .hero-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    /* Why Us Section */
+    .why-us {
+      background: white;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .feature-card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-align: center;
+      border: 1px solid rgba(74, 108, 247, 0.1);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      border-color: rgba(74, 108, 247, 0.3);
+    }
+    
+    .feature-icon {
+      font-size: 50px;
+      margin-bottom: 25px;
+      color: var(--primary);
+    }
+    
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    
+    /* Notre Approche Section */
+    .approach {
+      background: linear-gradient(135deg, #f0f4ff 0%, #e6ebff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .approach .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    
+    .approach-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .process-step {
+      background: white;
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .process-step:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+    
+    .step-number {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(74, 108, 247, 0.1);
+      line-height: 1;
+    }
+    
+    .process-step h3 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+    
+    /* Témoignages Section */
+    .testimonials {
+      background: white;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .testimonial-card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(74, 108, 247, 0.1);
+      transition: var(--transition);
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      border-color: rgba(74, 108, 247, 0.3);
+    }
+    
+    .client-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+    
+    .client-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      padding: 3px;
+    }
+    
+    .client-info div {
+      margin-left: 20px;
+    }
+    
+    .client-info h4 {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+    }
+    
+    .client-info p {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      position: relative;
+      padding-left: 20px;
+    }
+    
+    .testimonial-text::before {
+      content: """;
+      position: absolute;
+      top: -20px;
+      left: 0;
+      font-size: 5rem;
+      color: rgba(74, 108, 247, 0.1);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    
+    .rating {
+      color: #FFD700;
+      font-size: 1.3rem;
+      margin-top: 20px;
+    }
+    
+    .add-testimonial {
+      background: var(--light);
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-top: 60px;
+    }
+    
+    .add-testimonial h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+    
+    .testimonial-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+    
+    input, textarea, select {
+      width: 100%;
+      padding: 14px 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-family: 'Jost', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+    }
+    
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .star-rating {
+      display: flex;
+      gap: 5px;
+      margin-top: 10px;
+    }
+    
+    .star-rating i {
+      font-size: 1.8rem;
+      color: #ddd;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .star-rating i.active {
+      color: #FFD700;
+    }
+    
+    .submit-btn {
+      grid-column: span 2;
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    /* Notre Engagement Section */
+    .guarantee {
+      background: var(--dark);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .guarantee .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    
+    .guarantee-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .guarantee-badge {
+      background: var(--primary);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 25px;
+      font-size: 0.9rem;
+    }
+    
+    .guarantee-list {
+      list-style: none;
+      margin-top: 30px;
+    }
+    
+    .guarantee-list li {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+    
+    .guarantee-list i {
+      font-size: 1.5rem;
+      color: var(--primary);
+      min-width: 30px;
+    }
+    
+    /* CTA Section */
+    .cta {
+      background: var(--primary);
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+    
+    .cta .container {
+      max-width: 700px;
+    }
+    
+    .cta-text {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--dark);
+      color: rgba(255, 255, 255, 0.8);
+      padding: 80px 0 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-col h3 {
+      color: white;
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--primary);
+    }
+    
+    .footer-logo {
+      margin-bottom: 25px;
+      height: 40px;
+    }
+    
+    .footer p {
+      margin-bottom: 25px;
+    }
+    
+    .footer ul {
+      list-style: none;
+    }
+    
+    .footer ul li {
+      margin-bottom: 15px;
+    }
+    
+    .footer ul li a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer ul li a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .social-list {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero .container,
+      .approach .container,
+      .guarantee .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .hero-banner {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      
+      .hero-buttons {
+        justify-content: center;
+      }
+      
+      .hero-features {
+        justify-content: center;
+      }
+      
+      .section-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      .testimonial-form {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-group.full-width,
+      .submit-btn {
+        grid-column: 1;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .section {
+        padding: 70px 0;
+      }
+      
+      .headline-lg {
+        font-size: 2.8rem;
+      }
+      
+      .title-lg {
+        font-size: 2.3rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTEgMjgiPgogIDx0ZXh0IHg9IjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM0QTZDRjciPkJpc3NhIEFydDwvdGV4dD4KPC9zdmc+" alt="Bissa Art" class="logo">
+      </a>
+
+      <nav class="navbar">
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="index.html" class="navbar-link active">Accueil</a>
+          </li>
+          <li class="navbar-item">
+            <a href="index(1).html" class="navbar-link">Services</a>
+          </li>
+          <li class="navbar-item">
+            <a href="index(2).html" class="navbar-link">Portfolio</a>
+          </li>
+          <li class="navbar-item">
+            <a href="index(3).html" class="navbar-link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+
+      <a href="index(3).html" class="btn btn-primary">Devis </a>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <!-- Section Hero -->
+      <section class="section hero">
+        <div class="container">
+          <div class="hero-content">
+            <p class="hero-subtitle">
+              <i class="fas fa-hand-wave"></i> Bienvenue chez Bissa Art
+            </p>
+            <h1 class="headline-lg">Design Graphique qui fait la différence</h1>
+            <p class="hero-text body-md">
+              Votre partenaire créatif en Algérie pour des designs uniques et impactants
+            </p>
+            <div class="hero-buttons">
+              <a href="index(3).html" class="btn btn-primary">Demander un devis</a>
+              <a href="index(2).html" class="btn btn-secondary">Voir nos réalisations</a>
+            </div>
+            
+            <div class="hero-features">
+              <div class="feature-item">
+                <i class="fas fa-clock"></i>
+                <span>Service 24h/24</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-tag"></i>
+                <span>Tarifs compétitifs</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-heart"></i>
+                <span>Satisfaction garantie</span>
+              </div>
+            </div>
+          </div>
+      
+          <figure class="hero-banner">
+            <img src="WhatsApp Image 2025-06-06 at 11.44.58_6a44fbbd.jpg" alt="Design graphique créatif">
+          </figure>
+        </div>
+      </section>
+
+      <!-- Pourquoi nous choisir
+                   <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=800" alt="Design graphique créatif">
+ -->
+      <section class="section why-us">
+        <div class="container">
+          <h2 class="section-title text-center">Pourquoi choisir Bissa Art ?</h2>
+          
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-gem"></i>
+              </div>
+              <h3>Designs Premium</h3>
+              <p>Créations uniques et personnalisées qui reflètent parfaitement votre identité</p>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <h3>Disponibilité 24/24</h3>
+              <p>Service client toujours disponible pour répondre à vos besoins urgents</p>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-wallet"></i>
+              </div>
+              <h3>Tarifs Accessibles</h3>
+              <p>Rapport qualité-prix imbattable avec des options adaptées à tous budgets</p>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-sync-alt"></i>
+              </div>
+              <h3>Modifications Illimitées</h3>
+              <p>Jusqu'à ce que vous soyez entièrement satisfait du résultat final</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Notre Approche améliorée -->
+      <section class="section approach">
+        <div class="container">
+          <div class="approach-content">
+            <h2 class="title-lg">Notre Approche Client-Centric</h2>
+            <p class="body-md">
+              Chez Bissa Art, nous plaçons votre satisfaction au cœur de notre processus créatif. 
+              Chaque projet commence par une écoute attentive de vos besoins et se poursuit avec des 
+              échanges réguliers jusqu'à la livraison finale.
+            </p>
+            
+            <div class="process-steps">
+              <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Écoute & Briefing</h3>
+                <p>Analyse approfondie de vos besoins et objectifs</p>
+              </div>
+              
+              <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Conception Créative</h3>
+                <p>Développement de concepts uniques et personnalisés</p>
+              </div>
+              
+              <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Révisions & Affinage</h3>
+                <p>Modifications jusqu'à satisfaction totale</p>
+              </div>
+              
+              <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Livraison Finale</h3>
+                <p>Remise des fichiers dans tous les formats nécessaires</p>
+              </div>
+            </div>
+          </div>
+          
+          <figure class="approach-banner">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800" alt="Processus créatif">
+          </figure>
+        </div>
+      </section>
+
+      <!-- Notre Engagement amélioré -->
+      <section class="section guarantee">
+        <div class="container">
+          <div class="guarantee-content">
+            <span class="guarantee-badge">Notre Engagement</span>
+            <h2 class="title-lg">Satisfaction 100% Garantie</h2>
+            <p class="body-md">
+              Nous croyons tellement en la qualité de notre travail que nous vous offrons des modifications illimitées jusqu'à ce que vous soyez entièrement satisfait. Votre réussite est notre priorité absolue.
+            </p>
+            
+            <ul class="guarantee-list">
+              <li>
+                <i class="fas fa-check-circle"></i>
+                <span>Modifications illimitées jusqu'à satisfaction totale</span>
+              </li>
+              <li>
+                <i class="fas fa-headset"></i>
+                <span>Support réactif 24/24 par chat, email et téléphone</span>
+              </li>
+              <li>
+                <i class="fas fa-file-download"></i>
+                <span>Fichiers sources inclus dans tous les formats</span>
+              </li>
+              <li>
+                <i class="fas fa-lock"></i>
+                <span>Confidentialité absolue de vos projets</span>
+              </li>
+              <li>
+                <i class="fas fa-gift"></i>
+                <span>Offres exclusives pour nos clients fidèles</span>
+              </li>
+            </ul>
+          </div>
+          
+          <figure class="guarantee-banner">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800" alt="Satisfaction garantie">
+          </figure>
+        </div>
+      </section>
+
+      <!-- CTA Final -->
+      <section class="cta">
+        <div class="container">
+          <h2 class="title-lg">Prêt à donner vie à vos idées ?</h2>
+          <p class="cta-text">
+            Contactez-nous dès maintenant pour un devis gratuit et sans engagement
+          </p>
+          <a href="index(3).html" class="btn btn-tertiary">Démarrer mon projet</a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTEgMjgiPgogIDx0ZXh0IHg9IjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM0QTZDRjciPkJpc3NhIEFydDwvdGV4dD4KPC9zdmc+" alt="Bissa Art" class="logo">
+          <p>Votre partenaire en design graphique en Algérie. Créations uniques, service premium.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="#">Design de logos</a></li>
+            <li><a href="#">Identité visuelle</a></li>
+            <li><a href="#">Supports print</a></li>
+            <li><a href="#">Design digital</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <ul>
+            <li><i class="fas fa-envelope"></i> khamsatbissa@gmail.com</li>
+            <li><i class="fas fa-clock"></i> Disponible 24h/24</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <ul class="social-list">
+          <li>
+            <a href="https://www.facebook.com/Dz.Designer.2" class="social-link">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </li>
+          
+        
+        </ul>
+
+        <p class="text-center">&copy; 2025 Bissa Art. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Animation au défilement
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animation des éléments au scroll
+      const animateOnScroll = function() {
+        const elements = document.querySelectorAll('.feature-card, .process-step, .testimonial-card, .guarantee-list li');
+        
+        elements.forEach(element => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.3;
+          
+          if(elementPosition < screenPosition) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      };
+      
+      // Initial state
+      const features = document.querySelectorAll('.feature-card');
+      const steps = document.querySelectorAll('.process-step');
+      const testimonials = document.querySelectorAll('.testimonial-card');
+      const guaranteeItems = document.querySelectorAll('.guarantee-list li');
+      
+      features.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = all 0.5s ease ${index * 0.1}s;
+      });
+      
+      steps.forEach((step, index) => {
+        step.style.opacity = '0';
+        step.style.transform = 'translateY(20px)';
+        step.style.transition = all 0.5s ease ${index * 0.1}s;
+      });
+      
+      testimonials.forEach((testimonial, index) => {
+        testimonial.style.opacity = '0';
+        testimonial.style.transform = 'translateY(20px)';
+        testimonial.style.transition = all 0.5s ease ${index * 0.1}s;
+      });
+      
+      guaranteeItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-20px)';
+        item.style.transition = all 0.5s ease ${index * 0.2}s;
+      });
+      
+      window.addEventListener('scroll', animateOnScroll);
+      animateOnScroll(); // Trigger once on load
+      
+      // Header scroll effect
+      const header = document.querySelector('.header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+      
+      // Système d'évaluation
+      const stars = document.querySelectorAll('#starRating i');
+      const ratingInput = document.getElementById('rating');
+      
+      stars.forEach(star => {
+        star.addEventListener('click', () => {
+          const rating = parseInt(star.getAttribute('data-rating'));
+          ratingInput.value = rating;
+          
+          stars.forEach((s, i) => {
+            if (i < rating) {
+              s.classList.remove('far');
+              s.classList.add('fas', 'active');
+            } else {
+              s.classList.remove('fas', 'active');
+              s.classList.add('far');
+            }
+          });
+        });
+      });
+      
+      // Ajout de témoignage
+      const testimonialForm = document.getElementById('testimonialForm');
+      const testimonialsGrid = document.querySelector('.testimonials-grid');
+      
+      testimonialForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const design = document.getElementById('design').value;
+        const testimonial = document.getElementById('testimonial').value;
+        const rating = document.getElementById('rating').value;
+        
+        if (!name || !design || !testimonial || rating === "0") {
+          alert('Veuillez remplir tous les champs et donner une évaluation.');
+          return;
+        }
+        
+        // Générer un avatar aléatoire
+        const gender = Math.random() > 0.5 ? 'men' : 'women';
+        const randomId = Math.floor(Math.random() * 99);
+        const avatarUrl = https://randomuser.me/api/portraits/${gender}/${randomId}.jpg;
+        
+        // Créer le témoignage
+        const testimonialCard = document.createElement('div');
+        testimonialCard.className = 'testimonial-card';
+        testimonialCard.innerHTML = `
+          <div class="client-info">
+            <img src="${avatarUrl}" alt="Client" class="client-avatar">
+            <div>
+              <h4>${name}</h4>
+              <p>Client Bissa Design</p>
+            </div>
+          </div>
+          <p class="testimonial-text">"${testimonial}"</p>
+          <div class="rating">
+            ${'<i class="fas fa-star"></i>'.repeat(rating) + '<i class="far fa-star"></i>'.repeat(5 - rating)}
+          </div>
+          <div class="design-info">
+            <strong>Design:</strong> ${design}
+          </div>
+        `;
+        
+        // Ajouter au début
+        testimonialsGrid.insertBefore(testimonialCard, testimonialsGrid.firstChild);
+        
+        // Animation
+        testimonialCard.style.opacity = '0';
+        testimonialCard.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          testimonialCard.style.opacity = '1';
+          testimonialCard.style.transform = 'translateY(0)';
+        }, 10);
+        
+        // Réinitialiser le formulaire
+        testimonialForm.reset();
+        stars.forEach(star => {
+          star.classList.remove('fas', 'active');
+          star.classList.add('far');
+        });
+        ratingInput.value = '0';
+        
+        alert('Merci pour votre témoignage ! Il a été ajouté avec succès.');
+      });
+    });
+  </script>
+</body>
+</html>
+   

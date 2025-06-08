@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Bissa Design">
+
+  <title>Bissa art - Nos Services Graphiques</title>
+  <meta name="description" content="Services professionnels de design graphique en Algérie - Création de logos, thumbnails, packaging produits et plus">
+
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* CSS Global */
+    :root {
+      --primary: #4a6cf7;
+      --primary-dark: #3a56d1;
+      --dark: #1e1e2c;
+      --light: #f9f9ff;
+      --gray: #6a6a78;
+      --transition: all 0.3s ease;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --radius: 15px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Jost', sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      background-color: #fff;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .section {
+      padding: 100px 0;
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 60px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    
+    .title-lg {
+      font-size: 2.8rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    
+    .body-md {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 30px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+    
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 20px 0;
+      transition: var(--transition);
+    }
+    
+    .header.scrolled {
+      padding: 15px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+    
+    .header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo img {
+      height: 40px;
+    }
+    
+    .navbar-list {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+    }
+    
+    .navbar-link {
+      color: var(--dark);
+      font-weight: 500;
+      position: relative;
+      padding: 5px 0;
+      text-decoration: none;
+    }
+    
+    .navbar-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .navbar-link:hover::after,
+    .navbar-link.active::after {
+      width: 100%;
+    }
+    
+    /* Services Section */
+    .services {
+      padding-top: 180px;
+      background: linear-gradient(135deg, #f9f9ff 0%, #eef1ff 100%);
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .service-card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(74, 108, 247, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      border-color: rgba(74, 108, 247, 0.3);
+    }
+    
+    .service-icon {
+      font-size: 50px;
+      margin-bottom: 25px;
+      color: var(--primary);
+    }
+    
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .service-card p {
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+    
+    .service-features {
+      margin-top: 20px;
+    }
+    
+    .service-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    
+    .service-features i {
+      color: var(--primary);
+    }
+    
+    /* CTA Section */
+    .cta {
+      background: var(--primary);
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+    
+    .cta .container {
+      max-width: 700px;
+    }
+    
+    .cta-text {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--dark);
+      color: rgba(255, 255, 255, 0.8);
+      padding: 80px 0 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-col h3 {
+      color: white;
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--primary);
+    }
+    
+    .footer-logo {
+      margin-bottom: 25px;
+      height: 40px;
+    }
+    
+    .footer p {
+      margin-bottom: 25px;
+    }
+    
+    .footer ul {
+      list-style: none;
+    }
+    
+    .footer ul li {
+      margin-bottom: 15px;
+    }
+    
+    .footer ul li a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer ul li a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .social-list {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .section {
+        padding: 70px 0;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .header .navbar-list {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTEgMjgiPgogIDx0ZXh0IHg9IjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM0QTZDRjciPkJpc3NhIEFydDwvdGV4dD4KPC9zdmc+" alt="Bissa Art" class="logo">
+      </a>
+
+      <nav class="navbar">
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="index.html" class="navbar-link">Accueil</a>
+          </li>
+          <li class="navbar-item">
+            <a href="index(1).html" class="navbar-link active">Services</a>
+          </li>
+          <li class="navbar-item">
+            <a href="index(2).html" class="navbar-link">Portfolio</a>
+          </li>
+          <li class="navbar-item">
+            <a href="index(3).html" class="navbar-link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+
+      <a href="index(3).html" class="btn btn-primary">Devis Gratuit</a>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <!-- Services Section -->
+      <section class="section services">
+        <div class="container">
+          <h2 class="section-title text-center">Nos Services de Design Graphique</h2>
+          <p class="body-md text-center">Des solutions créatives sur mesure pour booster votre image de marque</p>
+          
+          <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-palette"></i>
+              </div>
+              <h3>Création de Logos</h3>
+              <p>Identité visuelle unique qui représente parfaitement votre marque</p>
+              <ul class="service-features">
+                <li><i class="fas fa-check"></i> Plusieurs concepts proposés</li>
+                <li><i class="fas fa-check"></i> Formats vectoriels inclus</li>
+                <li><i class="fas fa-check"></i> Charte graphique complète</li>
+              </ul>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-images"></i>
+              </div>
+              <h3>Thumbnails & Bannières</h3>
+              <p>Designs accrocheurs pour vos vidéos et réseaux sociaux</p>
+              <ul class="service-features">
+                <li><i class="fas fa-check"></i> Optimisés pour chaque plateforme</li>
+                <li><i class="fas fa-check"></i> Textes et visuels impactants</li>
+                <li><i class="fas fa-check"></i> Formats adaptés (YouTube, Facebook...)</li>
+              </ul>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-box-open"></i>
+              </div>
+              <h3>Packaging Produits</h3>
+              <p>Design d'emballage qui attire l'œil et valorise vos produits</p>
+              <ul class="service-features">
+                <li><i class="fas fa-check"></i> Adapté à votre cible</li>
+                <li><i class="fas fa-check"></i> Conforme aux normes d'impression</li>
+                <li><i class="fas fa-check"></i> Maquettes 3D réalistes</li>
+              </ul>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-newspaper"></i>
+              </div>
+              <h3>Couvertures de Livres & Journaux</h3>
+              <p>Designs professionnels pour vos publications</p>
+              <ul class="service-features">
+                <li><i class="fas fa-check"></i> Adaptation à votre contenu</li>
+                <li><i class="fas fa-check"></i> Typographies soignées</li>
+                <li><i class="fas fa-check"></i> Versions print et digitale</li>
+              </ul>
+            </div>
+            
+            <!-- Service 5 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-file-alt"></i>
+              </div>
+              <h3>CV Professionnels</h3>
+              <p>Design de CV qui vous démarque</p>
+              <ul class="service-features">
+                <li><i class="fas fa-check"></i> Mise en page moderne</li>
+                <li><i class="fas fa-check"></i> Optimisé ATS</li>
+                <li><i class="fas fa-check"></i> Version modifiable incluse</li>
+              </ul>
+            </div>
+            
+            <!-- Service 6 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-object-group"></i>
+              </div>
+              <h3>Identité Visuelle Complète</h3>
+              <p>Tous les éléments graphiques pour une marque cohérente</p>
+              <ul class="service-features">
+                <li><i class="fas fa-check"></i> Logo + déclinaisons</li>
+                <li><i class="fas fa-check"></i> Cartes de visite</li>
+                <li><i class="fas fa-check"></i> Papeterie et templates</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta">
+        <div class="container">
+          <h2 class="title-lg">Prêt à transformer votre image ?</h2>
+          <p class="cta-text">Contactez-nous dès maintenant pour discuter de votre projet et obtenir un devis personnalisé</p>
+          <a href="#" class="btn btn-primary">Demander un devis</a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTEgMjgiPgogIDx0ZXh0IHg9IjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM0QTZDRjciPkJpc3NhIEFydDwvdGV4dD4KPC9zdmc+" alt="Bissa Art" class="logo">
+          <p>Votre partenaire en design graphique en Algérie. Créations uniques, service premium.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="#">Design de logos</a></li>
+            <li><a href="#">Thumbnails & bannières</a></li>
+            <li><a href="#">Packaging produits</a></li>
+            <li><a href="#">Couvertures</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <ul>
+            <li><i class="fas fa-envelope"></i> khamsatbissa@gmail.com</li>
+            <li><i class="fas fa-clock"></i> Disponible 24h/24</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <ul class="social-list">
+          <li>
+            <a href="https://www.facebook.com/Dz.Designer.2" class="social-link">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </li>
+
+        </ul>
+
+        <p class="text-center">&copy; 2025 Bissa Art. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Animation au défilement
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animation des éléments au scroll
+      const animateOnScroll = function() {
+        const elements = document.querySelectorAll('.service-card');
+        
+        elements.forEach(element => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.3;
+          
+          if(elementPosition < screenPosition) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      };
+      
+      // Initial state
+      const services = document.querySelectorAll('.service-card');
+      
+      services.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = all 0.5s ease ${index * 0.1}s;
+      });
+      
+      window.addEventListener('scroll', animateOnScroll);
+      animateOnScroll(); // Trigger once on load
+      
+      // Header scroll effect
+      const header = document.querySelector('.header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
