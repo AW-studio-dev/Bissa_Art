@@ -176,7 +176,7 @@
       width: 100%;
     }
     
-    /* Mobile Menu */
+    /* Mobile Menu Button */
     .mobile-nav-toggle {
       display: none;
       background: transparent;
@@ -184,6 +184,8 @@
       cursor: pointer;
       padding: 10px;
       z-index: 1001;
+      font-size: 1.5rem;
+      color: var(--dark);
     }
     
     .mobile-nav-toggle .icon-close {
@@ -192,6 +194,66 @@
     
     .mobile-nav-btn {
       display: none;
+    }
+    
+    /* Mobile Navigation */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 350px;
+      height: 100%;
+      background: white;
+      z-index: 1000;
+      transition: all 0.3s ease-in-out;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      padding: 20px;
+      overflow-y: auto;
+    }
+    
+    .mobile-nav.active {
+      right: 0;
+    }
+    
+    .mobile-nav-list {
+      list-style: none;
+      margin-top: 60px;
+    }
+    
+    .mobile-nav-item {
+      margin-bottom: 20px;
+    }
+    
+    .mobile-nav-link {
+      font-size: 1.1rem;
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .mobile-nav-link:hover,
+    .mobile-nav-link.active {
+      color: var(--primary);
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+    
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
     }
     
     /* Services Section */
@@ -365,67 +427,6 @@
       transform: translateY(-5px);
     }
     
-    /* Mobile Menu Styles */
-    .mobile-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: white;
-      z-index: 1000;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    
-    .mobile-nav.active {
-      transform: translateX(0);
-    }
-    
-    .mobile-nav-list {
-      list-style: none;
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    
-    .mobile-nav-item {
-      margin-bottom: 30px;
-    }
-    
-    .mobile-nav-link {
-      font-size: 1.5rem;
-      color: var(--dark);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    
-    .mobile-nav-link.active {
-      color: var(--primary);
-    }
-    
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition);
-    }
-    
-    .overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    
     /* Responsive */
     @media (max-width: 992px) {
       .section {
@@ -482,7 +483,9 @@
       
       .mobile-nav-btn {
         display: inline-block;
-        margin-top: 30px;
+        margin-top: 20px;
+        width: 100%;
+        text-align: center;
       }
       
       /* Footer Mobile Styles */
@@ -520,6 +523,10 @@
       .btn {
         padding: 12px 25px;
         font-size: 0.9rem;
+      }
+      
+      .mobile-nav {
+        width: 85%;
       }
     }
   </style>
@@ -692,7 +699,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTEgMjgiPgogIDx0ZXh0IHg9IjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM0QTZDRjciPkJpc3NhIEFydDwvdGV4dD4KPC9zdmc+" alt="Bissa Art" class="logo">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTEgMjgiPgogIDx0ZXh0IHg9IjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM0QTZDRjciPkJpc3NhIEFydDwvdGV4dD4KPC9zdmc+" alt="Bissa Art" class="logo">
           <p>Votre partenaire en design graphique en Algérie. Créations uniques, service premium.</p>
         </div>
         
@@ -752,8 +759,16 @@
         body.classList.toggle('no-scroll');
         
         // Toggle icons
-        document.querySelector('.icon-menu').style.display = isExpanded ? 'block' : 'none';
-        document.querySelector('.icon-close').style.display = isExpanded ? 'none' : 'block';
+        const iconMenu = this.querySelector('.icon-menu');
+        const iconClose = this.querySelector('.icon-close');
+        
+        if (isExpanded) {
+          iconMenu.style.display = 'block';
+          iconClose.style.display = 'none';
+        } else {
+          iconMenu.style.display = 'none';
+          iconClose.style.display = 'block';
+        }
       });
       
       // Close mobile nav when clicking on overlay
@@ -764,8 +779,10 @@
         body.classList.remove('no-scroll');
         
         // Reset icons
-        document.querySelector('.icon-menu').style.display = 'block';
-        document.querySelector('.icon-close').style.display = 'none';
+        const iconMenu = mobileNavToggle.querySelector('.icon-menu');
+        const iconClose = mobileNavToggle.querySelector('.icon-close');
+        iconMenu.style.display = 'block';
+        iconClose.style.display = 'none';
       });
       
       // Close mobile nav when clicking on a link
@@ -778,8 +795,10 @@
           body.classList.remove('no-scroll');
           
           // Reset icons
-          document.querySelector('.icon-menu').style.display = 'block';
-          document.querySelector('.icon-close').style.display = 'none';
+          const iconMenu = mobileNavToggle.querySelector('.icon-menu');
+          const iconClose = mobileNavToggle.querySelector('.icon-close');
+          iconMenu.style.display = 'block';
+          iconClose.style.display = 'none';
         });
       });
       
