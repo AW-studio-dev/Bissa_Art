@@ -147,6 +147,7 @@
       color: var(--dark);
       cursor: pointer;
       z-index: 1001;
+      padding: 5px;
     }
     
     .navbar {
@@ -182,6 +183,10 @@
     .navbar-link:hover::after,
     .navbar-link.active::after {
       width: 100%;
+    }
+    
+    .desktop-only {
+      display: inline-block;
     }
     
     /* Contact Section */
@@ -441,6 +446,10 @@
         display: block;
       }
       
+      .desktop-only {
+        display: none;
+      }
+      
       .navbar {
         position: fixed;
         top: 0;
@@ -452,6 +461,7 @@
         box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         padding: 80px 30px 30px;
         transition: right 0.3s ease;
+        z-index: 1000;
       }
       
       .navbar.active {
@@ -463,8 +473,12 @@
         gap: 20px;
       }
       
-      .header .btn-primary {
-        display: none;
+      .navbar-item {
+        margin: 10px 0;
+      }
+      
+      body.menu-open {
+        overflow: hidden;
       }
     }
   </style>
@@ -479,8 +493,8 @@
         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTEgMjgiPgogIDx0ZXh0IHg9IjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM0QTZDRjciPkJpc3NhIEFydDwvdGV4dD4KPC9zdmc+" alt="Bissa Art" class="logo">
       </a>
 
-      <button class="menu-toggle" id="menuToggle">
-        <i class="fas fa-bars"></i>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <i class="fas fa-bars" id="menuIcon"></i>
       </button>
 
       <nav class="navbar" id="navbar">
@@ -500,7 +514,7 @@
         </ul>
       </nav>
 
-      <a href="index(3).html" class="btn btn-primary">Devis</a>
+      <a href="index(3).html" class="btn btn-primary desktop-only">Devis</a>
     </div>
   </header>
 
@@ -546,7 +560,6 @@
                 <textarea id="message" name="message" class="form-control" placeholder="Décrivez votre projet en détail" required></textarea>
               </div>
 
-              <!-- إعدادات FormSubmit الإضافية -->
               <input type="hidden" name="_captcha" value="false">
               <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
               <input type="hidden" name="_template" value="table">
@@ -632,56 +645,70 @@
   </footer>
 
   <script>
-    // تحسين تجربة المستخدم أثناء الإرسال
+    // Mobile Menu Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menuToggle');
+      const navbar = document.getElementById('navbar');
+      const menuIcon = document.getElementById('menuIcon');
+      
+      menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navbar.classList.toggle('active');
+        
+        if (navbar.classList.contains('active')) {
+          menuIcon.classList.remove('fa-bars');
+          menuIcon.classList.add('fa-times');
+          document.body.classList.add('menu-open');
+        } else {
+          menuIcon.classList.remove('fa-times');
+          menuIcon.classList.add('fa-bars');
+          document.body.classList.remove('menu-open');
+        }
+      });
+      
+      // Close menu when clicking on a link
+      const navLinks = document.querySelectorAll('.navbar-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          navbar.classList.remove('active');
+          menuIcon.classList.remove('fa-times');
+          menuIcon.classList.add('fa-bars');
+          document.body.classList.remove('menu-open');
+        });
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!navbar.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
+          navbar.classList.remove('active');
+          menuIcon.classList.remove('fa-times');
+          menuIcon.classList.add('fa-bars');
+          document.body.classList.remove('menu-open');
+        }
+      });
+    });
+
+    // Form Submission
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       const submitBtn = document.getElementById('submitBtn');
       const originalText = submitBtn.innerHTML;
       
-      // عرض أيقونة التحميل
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
       submitBtn.disabled = true;
       
-      // إعادة تعيين الزر بعد 5 ثواني (في حال فشل الإرسال)
       setTimeout(() => {
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
       }, 5000);
     });
 
-    // تأثير التمرير للهيدر
+    // Header scroll effect
     window.addEventListener('scroll', function() {
       const header = document.querySelector('.header');
       if (window.scrollY > 50) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
-      }
-    });
-
-    // Mobile Menu Toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const navbar = document.getElementById('navbar');
-    
-    menuToggle.addEventListener('click', function() {
-      navbar.classList.toggle('active');
-      menuToggle.innerHTML = navbar.classList.contains('active') ? 
-        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-    });
-
-    // Close menu when clicking on a link
-    const navLinks = document.querySelectorAll('.navbar-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        navbar.classList.remove('active');
-        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-      });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!navbar.contains(e.target) && e.target !== menuToggle) {
-        navbar.classList.remove('active');
-        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
       }
     });
   </script>
