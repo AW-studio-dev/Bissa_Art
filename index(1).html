@@ -42,6 +42,7 @@
       line-height: 1.6;
       background-color: #fff;
       overflow-x: hidden;
+      position: relative;
     }
     
     .container {
@@ -140,6 +141,11 @@
       height: 40px;
     }
     
+    .navbar {
+      display: flex;
+      align-items: center;
+    }
+    
     .navbar-list {
       display: flex;
       list-style: none;
@@ -168,6 +174,24 @@
     .navbar-link:hover::after,
     .navbar-link.active::after {
       width: 100%;
+    }
+    
+    /* Mobile Menu */
+    .mobile-nav-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+    }
+    
+    .mobile-nav-toggle .icon-close {
+      display: none;
+    }
+    
+    .mobile-nav-btn {
+      display: none;
     }
     
     /* Services Section */
@@ -341,6 +365,67 @@
       transform: translateY(-5px);
     }
     
+    /* Mobile Menu Styles */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      z-index: 1000;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .mobile-nav.active {
+      transform: translateX(0);
+    }
+    
+    .mobile-nav-list {
+      list-style: none;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .mobile-nav-item {
+      margin-bottom: 30px;
+    }
+    
+    .mobile-nav-link {
+      font-size: 1.5rem;
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .mobile-nav-link.active {
+      color: var(--primary);
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+    
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
     /* Responsive */
     @media (max-width: 992px) {
       .section {
@@ -357,16 +442,84 @@
     }
     
     @media (max-width: 768px) {
+      .section {
+        padding: 60px 0;
+      }
+      
       .section-title {
         font-size: 1.8rem;
+        margin-bottom: 40px;
+      }
+      
+      .title-lg {
+        font-size: 2rem;
+      }
+      
+      .body-md {
+        font-size: 1rem;
+      }
+      
+      .services {
+        padding-top: 120px;
       }
       
       .services-grid {
         grid-template-columns: 1fr;
       }
       
-      .header .navbar-list {
+      /* Header Mobile Styles */
+      .mobile-nav-toggle {
+        display: block;
+      }
+      
+      .navbar-list {
         display: none;
+      }
+      
+      .header .btn {
+        display: none;
+      }
+      
+      .mobile-nav-btn {
+        display: inline-block;
+        margin-top: 30px;
+      }
+      
+      /* Footer Mobile Styles */
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .footer-col h3 {
+        font-size: 1.3rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .section {
+        padding: 50px 0;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+      }
+      
+      .service-card {
+        padding: 30px 20px;
+      }
+      
+      .service-card h3 {
+        font-size: 1.3rem;
+      }
+      
+      .cta-text {
+        font-size: 1.1rem;
+      }
+      
+      .btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -380,6 +533,11 @@
       <a href="index.html" class="logo">
         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTEgMjgiPgogIDx0ZXh0IHg9IjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM0QTZDRjciPkJpc3NhIEFydDwvdGV4dD4KPC9zdmc+" alt="Bissa Art" class="logo">
       </a>
+
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="icon-menu"><i class="fas fa-bars"></i></span>
+        <span class="icon-close"><i class="fas fa-times"></i></span>
+      </button>
 
       <nav class="navbar">
         <ul class="navbar-list">
@@ -401,6 +559,26 @@
       <a href="index(3).html" class="btn btn-primary">Devis Gratuit</a>
     </div>
   </header>
+
+  <!-- Mobile Navigation -->
+  <div class="overlay"></div>
+  <div class="mobile-nav">
+    <ul class="mobile-nav-list">
+      <li class="mobile-nav-item">
+        <a href="index.html" class="mobile-nav-link">Accueil</a>
+      </li>
+      <li class="mobile-nav-item">
+        <a href="index(1).html" class="mobile-nav-link active">Services</a>
+      </li>
+      <li class="mobile-nav-item">
+        <a href="index(2).html" class="mobile-nav-link">Portfolio</a>
+      </li>
+      <li class="mobile-nav-item">
+        <a href="index(3).html" class="mobile-nav-link">Contact</a>
+      </li>
+    </ul>
+    <a href="index(3).html" class="btn btn-primary mobile-nav-btn">Devis Gratuit</a>
+  </div>
 
   <main>
     <article>
@@ -503,7 +681,7 @@
         <div class="container">
           <h2 class="title-lg">Prêt à transformer votre image ?</h2>
           <p class="cta-text">Contactez-nous dès maintenant pour discuter de votre projet et obtenir un devis personnalisé</p>
-          <a href="#" class="btn btn-primary">Demander un devis</a>
+          <a href="index(3).html" class="btn btn-primary">Demander un devis</a>
         </div>
       </section>
     </article>
@@ -521,10 +699,10 @@
         <div class="footer-col">
           <h3>Services</h3>
           <ul>
-            <li><a href="#">Design de logos</a></li>
-            <li><a href="#">Thumbnails & bannières</a></li>
-            <li><a href="#">Packaging produits</a></li>
-            <li><a href="#">Couvertures</a></li>
+            <li><a href="index(1).html">Design de logos</a></li>
+            <li><a href="index(1).html">Thumbnails & bannières</a></li>
+            <li><a href="index(1).html">Packaging produits</a></li>
+            <li><a href="index(1).html">Couvertures</a></li>
           </ul>
         </div>
         
@@ -549,7 +727,6 @@
               <i class="fab fa-instagram"></i>
             </a>
           </li>
-
         </ul>
 
         <p class="text-center">&copy; 2025 Bissa Art. Tous droits réservés.</p>
@@ -558,8 +735,64 @@
   </footer>
 
   <script>
-    // Animation au défilement
     document.addEventListener('DOMContentLoaded', function() {
+      // Mobile Navigation
+      const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+      const mobileNav = document.querySelector('.mobile-nav');
+      const overlay = document.querySelector('.overlay');
+      const body = document.body;
+      
+      // Toggle mobile navigation
+      mobileNavToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !isExpanded);
+        mobileNav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        body.classList.toggle('no-scroll');
+        
+        // Toggle icons
+        document.querySelector('.icon-menu').style.display = isExpanded ? 'block' : 'none';
+        document.querySelector('.icon-close').style.display = isExpanded ? 'none' : 'block';
+      });
+      
+      // Close mobile nav when clicking on overlay
+      overlay.addEventListener('click', function() {
+        mobileNavToggle.setAttribute('aria-expanded', 'false');
+        mobileNav.classList.remove('active');
+        overlay.classList.remove('active');
+        body.classList.remove('no-scroll');
+        
+        // Reset icons
+        document.querySelector('.icon-menu').style.display = 'block';
+        document.querySelector('.icon-close').style.display = 'none';
+      });
+      
+      // Close mobile nav when clicking on a link
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileNavToggle.setAttribute('aria-expanded', 'false');
+          mobileNav.classList.remove('active');
+          overlay.classList.remove('active');
+          body.classList.remove('no-scroll');
+          
+          // Reset icons
+          document.querySelector('.icon-menu').style.display = 'block';
+          document.querySelector('.icon-close').style.display = 'none';
+        });
+      });
+      
+      // Header scroll effect
+      const header = document.querySelector('.header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+      
       // Animation des éléments au scroll
       const animateOnScroll = function() {
         const elements = document.querySelectorAll('.service-card');
@@ -581,22 +814,15 @@
       services.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
-        card.style.transition = all 0.5s ease ${index * 0.1}s;
+        card.style.transition = `all 0.5s ease ${index * 0.1}s`;
       });
       
       window.addEventListener('scroll', animateOnScroll);
       animateOnScroll(); // Trigger once on load
-      
-      // Header scroll effect
-      const header = document.querySelector('.header');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      });
     });
   </script>
 </body>
 </html>
+    
+    
+    
